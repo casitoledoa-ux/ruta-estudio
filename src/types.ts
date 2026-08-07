@@ -23,3 +23,29 @@ export interface ProgresoUsuario {
   puntosTotales: number
   nivel: number
 }
+
+// Un criterio de la pauta de corrección: un punto clínico que la respuesta
+// debería cubrir, con el puntaje que vale ese punto específico.
+export interface CriterioPauta {
+  id: string
+  texto: string
+  puntos: number
+}
+
+// Una pregunta de desarrollo tipo caso clínico: presenta un caso + pregunta,
+// el usuario responde en texto libre, y luego se autoevalúa contra la pauta.
+export interface PreguntaDesarrollo {
+  id: string
+  caso: string
+  pregunta: string
+  duracionSegundos: number
+  pauta: CriterioPauta[]
+}
+
+export interface SesionCasosClinicos {
+  id: string
+  nombre: string
+  objetivo: string
+  preguntas: PreguntaDesarrollo[]
+}
+
