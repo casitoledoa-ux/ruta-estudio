@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Respeta la preferencia del usuario de reducir movimiento (importante para TDAH/sensibilidad sensorial) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Foco de teclado siempre visible */
+:focus-visible {
+  outline: 2px solid #F0B429;
+  outline-offset: 2px;
+}
