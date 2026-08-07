@@ -47,5 +47,77 @@ export const casosClinicosTTM: SesionCasosClinicos = {
         { id: 'd5', texto: 'Fundamenta usando el modelo de vulnerabilidad multisistémica de OPPERA/ROPA', puntos: 1 },
       ],
     },
+    {
+      id: 'cocontraccion-protectora',
+      caso: 'Paciente consulta por limitación progresiva de la apertura bucal, sin antecedente de exodoncia ni trauma reciente. Refiere que antes podía morder una manzana completa y ahora no puede. Además nota cansancio mandibular al masticar y siente que "muerde más adelante" que antes. No refiere dolor articular importante.',
+      pregunta: 'Explique el mecanismo neuromuscular más probable detrás de este cuadro, fundamente por qué NO correspondería indicar toxina botulínica como primera línea, y proponga la conducta terapéutica más adecuada. (8 puntos)',
+      duracionSegundos: 600, // 10 min
+      pauta: [
+        { id: 'p1', texto: 'Identifica el cuadro como co-contracción muscular protectora, no como hiperactividad muscular primaria', puntos: 2 },
+        { id: 'p2', texto: 'Explica el mecanismo: un input nociceptivo/articular genera inhibición del músculo agonista y activación del antagonista para limitar el movimiento y proteger la estructura', puntos: 2 },
+        { id: 'p3', texto: 'Explica por qué la toxina botulínica es inadecuada aquí: al paralizar el músculo protector, la articulación queda sin restricción y tiende a inflamarse con mayor intensidad', puntos: 2 },
+        { id: 'p4', texto: 'Propone un manejo adecuado: buscar y tratar la noxa/causa articular subyacente con enfoque conservador, sin depender de relajante muscular ni toxina como tratamiento de la causa', puntos: 2 },
+      ],
+    },
+    {
+      id: 'cluster-oppera',
+      caso: 'Dos pacientes con TTM doloroso. Paciente A: alta tolerancia al dolor a la palpación, bajo distress psicológico, poca somatización, pocas comorbilidades dolorosas. Paciente B: alta sensibilidad al dolor experimental, ansiedad, depresión, catastrofización del dolor, múltiples comorbilidades dolorosas y peor función física y mental.',
+      pregunta: 'Clasifique a cada paciente según los clusters de pacientes descritos por OPPERA y fundamente qué diferencias esperaría en pronóstico y abordaje terapéutico entre ambos. (8 puntos)',
+      duracionSegundos: 600, // 10 min
+      pauta: [
+        { id: 'k1', texto: 'Clasifica correctamente al Paciente A dentro del cluster "Adaptativos"', puntos: 2 },
+        { id: 'k2', texto: 'Clasifica correctamente al Paciente B dentro del cluster "Síntomas globales"', puntos: 2 },
+        { id: 'k3', texto: 'Explica que el Paciente B tiene mayor riesgo de cronificación y peor pronóstico funcional', puntos: 2 },
+        { id: 'k4', texto: 'Fundamenta que el Paciente B requiere un abordaje biopsicosocial/multidisciplinario y no solo tratamiento local de la articulación o musculatura', puntos: 2 },
+      ],
+    },
+    {
+      id: 'diagnostico-articular-ruido',
+      caso: 'Paciente refiere un click audible a los 10 mm de apertura que desaparece en el resto del recorrido, sin historia de bloqueo ni dolor articular. En el examen se logra palpar el click, y se estima que se mantiene la relación cóndilo-disco con un desplazamiento leve.',
+      pregunta: 'Identifique el diagnóstico articular más probable y justifique según las características descritas, diferenciándolo de un desplazamiento discal con bloqueo intermitente. (8 puntos)',
+      duracionSegundos: 600,
+      pauta: [
+        { id: 'r1', texto: 'Identifica el diagnóstico como desplazamiento discal con reducción (simple)', puntos: 2 },
+        { id: 'r2', texto: 'Justifica con las características: click temprano (<30mm), se palpa, se mantiene relación cóndilo-disco con desplazamiento leve', puntos: 2 },
+        { id: 'r3', texto: 'Diferencia con bloqueo intermitente: ahí habría pop/click tardío, historia de trabamiento y pérdida de relación cóndilo-disco', puntos: 2 },
+        { id: 'r4', texto: 'Menciona que el bloqueo intermitente puede ser factor de riesgo de inflamación, a diferencia del desplazamiento simple', puntos: 2 },
+      ],
+    },
+    {
+      id: 'diagnostico-muscular-miofascial',
+      caso: 'Paciente con dolor mandibular de 2 meses de evolución. Se palpa una banda tensa en el masetero derecho que, al comprimirla, reproduce dolor local pero también genera dolor referido hacia la región supraorbitaria. El dolor aumenta con la función.',
+      pregunta: 'Identifique el diagnóstico muscular más probable, fundamente según el mecanismo fisiopatológico involucrado, y explique por qué NO correspondería a una mialgia local simple. (8 puntos)',
+      duracionSegundos: 600,
+      pauta: [
+        { id: 'm1', texto: 'Identifica el diagnóstico como dolor miofascial', puntos: 2 },
+        { id: 'm2', texto: 'Menciona la banda tensa con punto gatillo (PG) como hallazgo clave', puntos: 2 },
+        { id: 'm3', texto: 'Explica el mecanismo: convergencia a nivel del SNC que genera dolor referido en un sitio distinto al origen real', puntos: 2 },
+        { id: 'm4', texto: 'Diferencia de la mialgia local: en esta el dolor se mantiene localizado en el sitio de palpación, sin dolor referido', puntos: 2 },
+      ],
+    },
+    {
+      id: 'oa-bilateral-craneofacial',
+      caso: 'Paciente con antecedente de dolor articular bilateral de larga data, actualmente sin dolor pero con crepitación ocasional. Al examen facial: mandíbula retruida, aumento del ángulo goniaco, perfil con nariz aguileña y escotadura antegonial marcada de forma bilateral.',
+      pregunta: '¿Qué patología articular sugieren estos hallazgos craneofaciales? Explique el mecanismo de crecimiento facial asociado y qué tan alta es la sospecha diagnóstica según los signos descritos. (8 puntos)',
+      duracionSegundos: 600,
+      pauta: [
+        { id: 'o1', texto: 'Identifica la OA bilateral como principal sospecha diagnóstica', puntos: 2 },
+        { id: 'o2', texto: 'Explica el mecanismo: crecimiento rotacional posterior ("cara de portazo") asociado a reabsorción condilar progresiva', puntos: 2 },
+        { id: 'o3', texto: 'Relaciona la nariz aguileña marcada con mayor probabilidad de OA', puntos: 2 },
+        { id: 'o4', texto: 'Señala que la crepitación refuerza la sospecha pero que su ausencia no la descarta, y que siempre debe confirmarse con imágenes', puntos: 2 },
+      ],
+    },
+    {
+      id: 'mialgia-central-vs-periferica',
+      caso: 'Paciente con dolor mandibular bilateral difuso de 8 meses de evolución, presente incluso en reposo, con alodinia a la palpación de múltiples músculos masticatorios y cervicales, y un dolor desproporcionado respecto a los hallazgos clínicos objetivos.',
+      pregunta: 'Identifique el tipo de dolor muscular más probable y explique por qué un abordaje exclusivamente periférico (ej. bloqueos anestésicos locales) probablemente no sea efectivo, proponiendo el enfoque terapéutico más adecuado. (8 puntos)',
+      duracionSegundos: 600,
+      pauta: [
+        { id: 'c1', texto: 'Identifica el cuadro como mialgia mediada centralmente (dolor muscular persistente)', puntos: 2 },
+        { id: 'c2', texto: 'Menciona los hallazgos característicos: dolor difuso, bilateral, presente en reposo, alodinia, desproporción respecto a hallazgos', puntos: 2 },
+        { id: 'c3', texto: 'Explica por qué el manejo periférico no basta: el origen es central, y un intento periférico podría incluso exacerbar el dolor', puntos: 2 },
+        { id: 'c4', texto: 'Propone un manejo predominantemente farmacológico/centralizado, considerando comorbilidades de dolor crónico', puntos: 2 },
+      ],
+    },
   ],
 }
