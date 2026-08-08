@@ -22,6 +22,10 @@ export interface ProgresoUsuario {
   rachaDias: number
   puntosTotales: number
   nivel: number
+  leccionActual?: number
+  nombreJugador?: string | null
+  avatarGenero?: string | null
+  avatarColor?: string | null
 }
 
 // Un criterio de la pauta de corrección: un punto clínico que la respuesta
@@ -49,3 +53,58 @@ export interface SesionCasosClinicos {
   preguntas: PreguntaDesarrollo[]
 }
 
+// Una pregunta de alternativas: enunciado + opciones, con feedback inmediato al elegir.
+export interface PreguntaAlternativa {
+  id: string
+  enunciado: string
+  opciones: string[]
+  indiceCorrecta: number
+  explicacion: string
+  puntos: number
+}
+
+export interface SesionAlternativas {
+  id: string
+  nombre: string
+  objetivo: string
+  preguntas: PreguntaAlternativa[]
+}
+
+// Un ejercicio dentro de una lección: puede ser una alternativa o un caso clínico.
+export type Ejercicio =
+  | { tipo: 'alternativa'; pregunta: PreguntaAlternativa }
+  | { tipo: 'caso'; pregunta: PreguntaDesarrollo }
+
+// Una lección es un nodo del mapa: un grupo corto de ejercicios mixtos.
+export interface Leccion {
+  id: string
+  titulo: string
+  ejercicios: Ejercicio[]
+}
+
+export interface ProgresoLecciones {
+  usuarioId: string
+  rachaDias: number
+  puntosTotales: number
+  nivel: number
+  leccionActual: number
+}
+
+// Un nodo del mapa conceptual interactivo. Si "texto" ya viene con valor, el nodo
+// aparece completado desde el inicio. Si "texto" es null, el nodo está vacío y
+// "respuestaCorrecta" indica qué término del banco corresponde ahí.
+export interface NodoMapaConceptual {
+  id: string
+  texto: string | null
+  respuestaCorrecta?: string
+  x: number
+  y: number
+  padreId: string | null
+}
+
+export interface MapaConceptualEjercicio {
+  id: string
+  titulo: string
+  nodos: NodoMapaConceptual[]
+  terminosDistractores?: string[]
+}
