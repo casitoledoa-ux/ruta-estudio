@@ -22,6 +22,7 @@ export default function App() {
   const [sesionMapaMentalTerminada, setSesionMapaMentalTerminada] = useState(false)
   const [guardandoPerfil, setGuardandoPerfil] = useState(false)
   const [cargandoProgreso, setCargandoProgreso] = useState(true)
+  const [errorPerfil, setErrorPerfil] = useState<string | null>(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -55,11 +56,18 @@ export default function App() {
     return (
       <CrearPersonaje
         guardando={guardandoPerfil}
+        error={errorPerfil}
         onConfirmar={async (nombre, genero, color) => {
           setGuardandoPerfil(true)
-          await guardarPerfil(nombre, genero, color)
-          await cargarProgreso()
-          setGuardandoPerfil(false)
+          setErrorPerfil(null)
+          try {
+            await guardarPerfil(nombre, genero, color)
+            await cargarProgreso()
+          } catch (e) {
+            setErrorPerfil('No se pudo guardar el personaje. Revisa que hayas corrido la migración SQL de avatar en Supabase.')
+          } finally {
+            setGuardandoPerfil(false)
+          }
         }}
       />
     )
