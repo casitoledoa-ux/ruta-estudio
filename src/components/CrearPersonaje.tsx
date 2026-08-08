@@ -4,11 +4,12 @@ import AvatarExplorador, { ColorAvatar, GeneroAvatar } from './AvatarExplorador'
 interface CrearPersonajeProps {
   onConfirmar: (nombre: string, genero: GeneroAvatar, color: ColorAvatar) => void
   guardando: boolean
+  error: string | null
 }
 
 const COLORES: ColorAvatar[] = ['ambar', 'menta', 'coral']
 
-export default function CrearPersonaje({ onConfirmar, guardando }: CrearPersonajeProps) {
+export default function CrearPersonaje({ onConfirmar, guardando, error }: CrearPersonajeProps) {
   const [genero, setGenero] = useState<GeneroAvatar>('nino')
   const [color, setColor] = useState<ColorAvatar>('ambar')
   const [nombre, setNombre] = useState('')
@@ -57,6 +58,8 @@ export default function CrearPersonaje({ onConfirmar, guardando }: CrearPersonaj
         maxLength={20}
         className="font-cuerpo w-full bg-bosque-panel rounded-lg px-4 py-3 outline-none placeholder:text-marfil/40 mb-4"
       />
+
+      {error && <p className="font-cuerpo text-xs text-coral mb-3">{error}</p>}
 
       <button
         onClick={() => nombre.trim() && onConfirmar(nombre.trim(), genero, color)}
