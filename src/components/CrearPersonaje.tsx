@@ -8,13 +8,6 @@ interface CrearPersonajeProps {
 
 const COLORES: ColorAvatar[] = ['ambar', 'menta', 'coral']
 
-// 1. Definimos el mapa de colores con un tipo estricto Record
-const CODIGOS_COLORES: Record<ColorAvatar, string> = {
-  ambar: '#F0B429',
-  menta: '#5FBEA8',
-  coral: '#E8735A'
-}
-
 export default function CrearPersonaje({ onConfirmar, guardando }: CrearPersonajeProps) {
   const [genero, setGenero] = useState<GeneroAvatar>('nino')
   const [color, setColor] = useState<ColorAvatar>('ambar')
@@ -50,8 +43,7 @@ export default function CrearPersonaje({ onConfirmar, guardando }: CrearPersonaj
             key={c}
             onClick={() => setColor(c)}
             className={`w-9 h-9 rounded-full ${color === c ? 'ring-2 ring-marfil' : ''}`}
-            // 2. Usamos el mapa tipado de forma segura aquí
-            style={{ backgroundColor: CODIGOS_COLORES[c] }}
+            style={{ backgroundColor: { ambar: '#F0B429', menta: '#5FBEA8', coral: '#E8735A' }[c] }}
             aria-label={`Color ${c}`}
           />
         ))}
