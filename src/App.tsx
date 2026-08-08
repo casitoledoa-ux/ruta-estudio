@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react'
 import { supabase } from './supabaseClient'
 import Login from './components/Login'
-import SprintEstudio from './components/SprintEstudio'
-import CasoClinico from './components/CasoClinico'
-import { mapaMental } from './tecnicas/mapaMental'
-import { casosClinicosTTM } from './tecnicas/casosClinicosTTM'
-import { registrarSesionCompletada, obtenerProgreso } from './lib/progreso'
+import MapaConceptual from './components/MapaConceptual'
+import CrearPersonaje from './components/CrearPersonaje'
+import AvatarExplorador, { ColorAvatar, GeneroAvatar } from './components/AvatarExplorador'
+import MapaLecciones from './components/MapaLecciones'
+import LeccionJuego from './components/LeccionJuego'
+import { mapaConceptualTTM } from './tecnicas/mapaConceptualTTM'
+import { lecciones } from './tecnicas/lecciones'
+import { registrarSesionCompletada, registrarLeccionCompletada, obtenerProgreso, guardarPerfil } from './lib/progreso'
 import { ProgresoUsuario } from './types'
 
-type TecnicaElegida = 'mapa-mental' | 'casos-clinicos' | null
+type Pantalla = 'mapa' | 'leccion' | 'practica-libre'
 
 export default function App() {
   const [sesionActiva, setSesionActiva] = useState(false)
   const [cargandoSesion, setCargandoSesion] = useState(true)
-  const [tecnicaElegida, setTecnicaElegida] = useState<TecnicaElegida>(null)
-  const [sesionTerminada, setSesionTerminada] = useState(false)
-  const [progreso, setProgreso] = useState<ProgresoUsuario | null>(null)
-  const [guardando, setGuardando] = useState(false)
-  const [errorGuardado, setErrorGuardado] = useState<string | null>(null)
+  const [pantalla, setPantalla] = useState<Pantalla>('mapa')
+  const [indiceLeccion, setIndiceLeccion] = useState(0)
+  const [progreso, setProgreso] = useState<(ProgresoUsuario & { leccionActual: number }) | null>(null)
+  const [sesionMapaMentalTerminada, setSesionMapaMentalTerminada] = useState(false)
+  const [guardandoPerfil, setGuardandoPerfil] = useState(false)
+  const [cargandoProgreso, setCargandoProgreso] = useState(true)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -28,25 +32,16 @@ export default function App() {
 
   useEffect(() => {
     if (!sesionActiva) return
-    obtenerProgreso().then(setProgreso)
+    cargarProgreso()
   }, [sesionActiva])
 
-  async function manejarCompletar(tecnicaId: string, duracionTotal: number, puntos: number) {
-    setGuardando(true)
-    setErrorGuardado(null)
-    try {
-      await registrarSesionCompletada(tecnicaId, duracionTotal, puntos)
-      const progresoActualizado = await obtenerProgreso()
-      setProgreso(progresoActualizado)
-    } catch (e) {
-      setErrorGuardado('No se pudo guardar tu progreso. Revisa tu conexión e inténtalo de nuevo.')
-    } finally {
-      setGuardando(false)
-      setSesionTerminada(true)
-    }
+  async function cargarProgreso() {
+    const p = await obtenerProgreso()
+    setProgreso(p as any)
+    setCargandoProgreso(false)
   }
 
-  if (cargandoSesion) {
+  if (cargandoSesion || (sesionActiva && cargandoProgreso)) {
     return <div className="min-h-screen flex items-center justify-center font-cuerpo text-marfil/60">Cargando...</div>
   }
 
@@ -54,72 +49,96 @@ export default function App() {
     return <Login onIngreso={() => setSesionActiva(true)} />
   }
 
-  function volverAlInicio() {
-    setTecnicaElegida(null)
-    setSesionTerminada(false)
+  const leccionActual = progreso?.leccionActual ?? 0
+
+  if (!progreso || !progreso.nombreJugador) {
+    return (
+      <CrearPersonaje
+        guardando={guardandoPerfil}
+        onConfirmar={async (nombre, genero, color) => {
+          setGuardandoPerfil(true)
+          await guardarPerfil(nombre, genero, color)
+          await cargarProgreso()
+          setGuardandoPerfil(false)
+        }}
+      />
+    )
   }
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-8">
       {progreso && (
-        <div className="font-dato text-sm text-marfil/70 mb-6">
-          🔥 {progreso.rachaDias} {progreso.rachaDias === 1 ? 'día' : 'días'} · {progreso.puntosTotales} pts · nivel {progreso.nivel}
+        <div className="flex items-center gap-3 mb-6">
+          <AvatarExplorador
+            genero={(progreso.avatarGenero as GeneroAvatar) ?? 'nino'}
+            color={(progreso.avatarColor as ColorAvatar) ?? 'ambar'}
+            size={44}
+          />
+          <div>
+            <p className="font-cuerpo text-sm text-marfil">{progreso.nombreJugador}</p>
+            <p className="font-dato text-xs text-marfil/60">
+              🔥 {progreso.rachaDias} {progreso.rachaDias === 1 ? 'día' : 'días'} · {progreso.puntosTotales} pts · nivel {progreso.nivel}
+            </p>
+          </div>
         </div>
       )}
 
-      <div className="flex-1 flex items-center justify-center w-full">
-        {!tecnicaElegida && (
-          <div className="flex flex-col gap-3 w-full max-w-xs">
-            <button
-              onClick={() => setTecnicaElegida('mapa-mental')}
-              className="font-cuerpo bg-bosque-panel rounded-xl px-5 py-4 text-left"
-            >
-              <span className="block font-display text-lg text-ambar">Mapa Mental</span>
-              <span className="block text-xs text-marfil/60 mt-1">Explorar un tema — 4 etapas</span>
-            </button>
-            <button
-              onClick={() => setTecnicaElegida('casos-clinicos')}
-              className="font-cuerpo bg-bosque-panel rounded-xl px-5 py-4 text-left"
-            >
-              <span className="block font-display text-lg text-ambar">Casos Clínicos TTM</span>
-              <span className="block text-xs text-marfil/60 mt-1">Evaluar hipótesis — razonamiento clínico</span>
-            </button>
-          </div>
-        )}
-
-        {tecnicaElegida === 'mapa-mental' && !sesionTerminada && (
-          <SprintEstudio
-            tecnica={mapaMental}
-            onCompletar={(puntos) => {
-              const duracionTotal = mapaMental.etapas.reduce((s, e) => s + e.duracionSegundos, 0)
-              manejarCompletar(mapaMental.id, duracionTotal, puntos)
+      {pantalla === 'mapa' && (
+        <div className="w-full">
+          <MapaLecciones
+            lecciones={lecciones}
+            leccionActual={leccionActual}
+            onElegir={(i) => {
+              setIndiceLeccion(i)
+              setPantalla('leccion')
             }}
           />
-        )}
-
-        {tecnicaElegida === 'casos-clinicos' && !sesionTerminada && (
-          <CasoClinico
-            sesion={casosClinicosTTM}
-            onCompletar={(puntos) => {
-              const duracionTotal = casosClinicosTTM.preguntas.reduce((s, p) => s + p.duracionSegundos, 0)
-              manejarCompletar(casosClinicosTTM.id, duracionTotal, puntos)
-            }}
-          />
-        )}
-
-        {sesionTerminada && (
-          <div className="text-center">
-            {guardando && <p className="font-cuerpo text-sm text-marfil/60 mb-3">Guardando tu progreso...</p>}
-            {errorGuardado && <p className="font-cuerpo text-sm text-coral mb-3">{errorGuardado}</p>}
+          <div className="flex justify-center mt-8">
             <button
-              onClick={volverAlInicio}
-              className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3"
+              onClick={() => setPantalla('practica-libre')}
+              className="font-cuerpo text-sm bg-bosque-panel text-marfil/70 rounded-lg px-5 py-3"
             >
-              Elegir otra técnica
+              Práctica libre: Mapa Conceptual
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {pantalla === 'leccion' && (
+        <LeccionJuego
+          leccion={lecciones[indiceLeccion]}
+          onCompletar={async (puntos) => {
+            await registrarLeccionCompletada(indiceLeccion, puntos)
+            await cargarProgreso()
+          }}
+          onSalir={() => setPantalla('mapa')}
+        />
+      )}
+
+      {pantalla === 'practica-libre' && !sesionMapaMentalTerminada && (
+        <MapaConceptual
+          ejercicio={mapaConceptualTTM}
+          onCompletar={async (puntos) => {
+            await registrarSesionCompletada(mapaConceptualTTM.id, 0, puntos)
+            await cargarProgreso()
+            setSesionMapaMentalTerminada(true)
+          }}
+        />
+      )}
+
+      {pantalla === 'practica-libre' && sesionMapaMentalTerminada && (
+        <div className="text-center">
+          <button
+            onClick={() => {
+              setSesionMapaMentalTerminada(false)
+              setPantalla('mapa')
+            }}
+            className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3"
+          >
+            Volver al mapa
+          </button>
+        </div>
+      )}
     </div>
   )
 }
