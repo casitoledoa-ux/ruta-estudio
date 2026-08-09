@@ -30,6 +30,10 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
   const [respuestaTexto, setRespuestaTexto] = useState('')
   const [criteriosMarcados, setCriteriosMarcados] = useState<Set<string>>(new Set())
 
+  // Acumula, por cada caso clínico respondido, los criterios de la pauta que NO se marcaron
+  // (para mostrarlos como "puntos a repasar" al final de la lección).
+  const [pendientes, setPendientes] = useState<{ titulo: string; criterios: string[] }[]>([])
+
   const ejercicio = leccion.ejercicios[indice]
   const esUltimo = indice === leccion.ejercicios.length - 1
 
@@ -82,10 +86,42 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
       .filter((c) => criteriosMarcados.has(c.id))
       .reduce((s, c) => s + c.puntos, 0)
     setPuntosGanados((p) => p + obtenido)
+
+    const noMarcados = ejercicio.pregunta.pauta
+      .filter((c) => !criteriosMarcados.has(c.id))
+      .map((c) => c.texto)
+    if (noMarcados.length > 0) {
+      const titulo = ejercicio.pregunta.pregunta.length > 70
+        ? ejercicio.pregunta.pregunta.slice(0, 70) + '…'
+        : ejercicio.pregunta.pregunta
+      setPendientes((prev) => [...prev, { titulo, criterios: noMarcados }])
+    }
+
     if (maximo > 0 && obtenido / maximo < 0.5) {
       perderCorazon()
     }
     avanzar()
+  }
+
+  function ListaPendientes() {
+    if (pendientes.length === 0) return null
+    return (
+      <div className="mt-6 text-left">
+        <p className="font-cuerpo text-sm text-ambar mb-2">📌 Puntos a repasar</p>
+        <div className="flex flex-col gap-3 max-h-64 overflow-y-auto">
+          {pendientes.map((p, i) => (
+            <div key={i} className="bg-bosque rounded-lg p-3">
+              <p className="font-cuerpo text-xs text-marfil/60 mb-2">{p.titulo}</p>
+              <ul className="font-cuerpo text-xs text-marfil/80 list-disc list-inside space-y-1">
+                {p.criterios.map((c, j) => (
+                  <li key={j}>{c}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
   }
 
   if (estado === 'sin-corazones') {
@@ -95,7 +131,8 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
         <p className="font-cuerpo text-sm text-marfil/70 mb-6">
           Te quedaste sin corazones en esta lección. Puedes intentarla de nuevo.
         </p>
-        <button onClick={onSalir} className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3">
+        <ListaPendientes />
+        <button onClick={onSalir} className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3 mt-6">
           Volver al mapa
         </button>
       </div>
@@ -108,7 +145,8 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
         <p className="font-display text-2xl text-ambar mb-2">¡Lección completada! 🏆</p>
         <p className="font-cuerpo text-sm text-marfil/70 mb-1">Ganaste {puntosGanados} puntos.</p>
         <p className="font-cuerpo text-sm text-marfil/70 mb-6">Corazones restantes: {corazones}</p>
-        <button onClick={onSalir} className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3">
+        <ListaPendientes />
+        <button onClick={onSalir} className="font-cuerpo bg-menta text-bosque rounded-lg px-6 py-3 mt-6">
           Volver al mapa
         </button>
       </div>
@@ -117,7 +155,12 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-bosque-panel rounded-2xl">
-      {/* Barra superior: progreso + corazones */}
+      {/* Barra superior: salir + progreso + corazones */}
+      <div className="flex items-center justify-between mb-2">
+        <button onClick={onSalir} className="font-cuerpo text-xs text-marfil/50">
+          ← Salir
+        </button>
+      </div>
       <div className="flex items-center justify-between mb-4">
         <div className="flex-1 h-2 bg-bosque rounded-full mr-4 overflow-hidden">
           <div
