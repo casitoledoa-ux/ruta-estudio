@@ -6,7 +6,8 @@ import CrearPersonaje from './components/CrearPersonaje'
 import AvatarExplorador, { ColorAvatar, GeneroAvatar } from './components/AvatarExplorador'
 import MapaLecciones from './components/MapaLecciones'
 import LeccionJuego from './components/LeccionJuego'
-import { mapaConceptualTTM } from './tecnicas/mapaConceptualTTM'
+import { mapasConceptuales } from './tecnicas/mapaConceptualTTM'
+import { MapaConceptualEjercicio } from './types'
 import { lecciones } from './tecnicas/lecciones'
 import { registrarSesionCompletada, registrarLeccionCompletada, obtenerProgreso, guardarPerfil } from './lib/progreso'
 import { ProgresoUsuario } from './types'
@@ -21,6 +22,7 @@ export default function App() {
   const [progreso, setProgreso] = useState<(ProgresoUsuario & { leccionActual: number }) | null>(null)
   const [sesionMapaMentalTerminada, setSesionMapaMentalTerminada] = useState(false)
   const [guardandoPerfil, setGuardandoPerfil] = useState(false)
+  const [mapaElegido, setMapaElegido] = useState<MapaConceptualEjercicio | null>(null)
   const [cargandoProgreso, setCargandoProgreso] = useState(true)
   const [errorPerfil, setErrorPerfil] = useState<string | null>(null)
 
@@ -103,7 +105,11 @@ export default function App() {
           />
           <div className="flex justify-center mt-8">
             <button
-              onClick={() => setPantalla('practica-libre')}
+              onClick={() => {
+                const aleatorio = mapasConceptuales[Math.floor(Math.random() * mapasConceptuales.length)]
+                setMapaElegido(aleatorio)
+                setPantalla('practica-libre')
+              }}
               className="font-cuerpo text-sm bg-bosque-panel text-marfil/70 rounded-lg px-5 py-3"
             >
               Práctica libre: Mapa Conceptual
@@ -123,16 +129,18 @@ export default function App() {
         />
       )}
 
-      {pantalla === 'practica-libre' && !sesionMapaMentalTerminada && (
+      {pantalla === 'practica-libre' && mapaElegido && !sesionMapaMentalTerminada && (
         <MapaConceptual
-          ejercicio={mapaConceptualTTM}
+          ejercicio={mapaElegido}
+          onSalir={() => setPantalla('mapa')}
           onCompletar={async (puntos) => {
-            await registrarSesionCompletada(mapaConceptualTTM.id, 0, puntos)
+            await registrarSesionCompletada(mapaElegido.id, 0, puntos)
             await cargarProgreso()
             setSesionMapaMentalTerminada(true)
           }}
         />
       )}
+
 
       {pantalla === 'practica-libre' && sesionMapaMentalTerminada && (
         <div className="text-center">
