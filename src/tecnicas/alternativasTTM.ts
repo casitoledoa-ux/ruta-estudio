@@ -10,6 +10,7 @@ export const alternativasTTM: SesionAlternativas = {
   preguntas: [
     {
       id: 'a1',
+      tema: 'anatomia-funcional',
       enunciado: '¿Qué tipo de cartílago posee la ATM, a diferencia de la mayoría de las articulaciones sinoviales del cuerpo (que tienen cartílago hialino)?',
       opciones: ['Cartílago hialino', 'Fibrocartílago', 'Cartílago elástico', 'No posee cartílago'],
       indiceCorrecta: 1,
@@ -18,6 +19,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'a2',
+      tema: 'anatomia-funcional',
       enunciado: 'El movimiento articular de la ATM durante la apertura bucal se caracteriza por ser:',
       opciones: ['Solo rotación', 'Solo traslación', 'Rototraslación continua', 'Deslizamiento puro sin rotación'],
       indiceCorrecta: 2,
@@ -26,6 +28,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'a3',
+      tema: 'anatomia-funcional',
       enunciado: '¿Cuál es la función principal de las fibras híbridas, tan abundantes en los músculos elevadores mandibulares?',
       opciones: [
         'Generar contracciones explosivas de corta duración',
@@ -39,6 +42,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'a4',
+      tema: 'control-motor',
       enunciado: 'El reflejo miotático (ej. golpe en el mentón) es de carácter:',
       opciones: ['Polisináptico', 'Bisináptico', 'Monosináptico', 'Trisináptico'],
       indiceCorrecta: 2,
@@ -47,6 +51,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'a5',
+      tema: 'anatomia-funcional',
       enunciado: '¿Qué tipo de mecanorreceptor articular informa sobre las posiciones condilares extremas?',
       opciones: ['Tipo 1 capsular', 'Tipo 2 capsular', 'Tipo 3 ligamentoso', 'Corpúsculo de Pacini'],
       indiceCorrecta: 2,
@@ -55,6 +60,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b1',
+      tema: 'anatomia-funcional',
       enunciado: '¿Cuál es la función principal del disco articular de la ATM?',
       opciones: [
         'Producir líquido sinovial y limitar la retrusión mandibular',
@@ -68,6 +74,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b2',
+      tema: 'anatomia-funcional',
       enunciado: 'Durante la protrusión mandibular, ¿qué músculo actúa como agonista?',
       opciones: ['Temporal posterior', 'Masetero profundo', 'Pterigoideo lateral, haz inferior, bilateral', 'Digástrico'],
       indiceCorrecta: 2,
@@ -76,6 +83,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b3',
+      tema: 'anatomia-funcional',
       enunciado: '¿Qué característica distingue funcionalmente a los músculos elevadores mandibulares?',
       opciones: [
         'Predominio exclusivo de fibras IIX para movimientos bruscos',
@@ -89,6 +97,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b4',
+      tema: 'control-motor',
       enunciado: '¿Qué receptor propioceptivo responde principalmente a la tensión generada durante la contracción muscular activa?',
       opciones: ['Huso neuromuscular', 'Órgano tendinoso de Golgi', 'Corpúsculo de Pacini', 'Termorreceptor'],
       indiceCorrecta: 1,
@@ -97,6 +106,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b5',
+      tema: 'dolor-sensibilizacion',
       enunciado: '¿Cuál afirmación representa el modelo de adaptación al dolor?',
       opciones: [
         'El dolor siempre aumenta la actividad de los agonistas y genera espasmo',
@@ -110,6 +120,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b6',
+      tema: 'dolor-sensibilizacion',
       enunciado: '¿Cuál hallazgo corresponde a sensibilización central?',
       opciones: [
         'Aumento del umbral de la segunda neurona',
@@ -123,6 +134,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b7',
+      tema: 'dolor-sensibilizacion',
       enunciado: 'En la cascada BDNF-TrkB-KCC2 del dolor neuropático, ¿qué ocurre con el GABA?',
       opciones: [
         'Mantiene siempre su efecto inhibitorio por entrada de cloro',
@@ -136,6 +148,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b8',
+      tema: 'diagnosticos-articulares',
       enunciado: '¿Qué examen es el de elección para evaluar estructuras óseas de la ATM?',
       opciones: ['Ecografía', 'Resonancia magnética', 'CBCT', 'Actigrafía'],
       indiceCorrecta: 2,
@@ -144,6 +157,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b9',
+      tema: 'diagnosticos-articulares',
       enunciado: '¿Cuál es el signo clínico característico de un desplazamiento discal sin reducción?',
       opciones: [
         'Click temprano y retorno a la línea media',
@@ -157,6 +171,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b10',
+      tema: 'diagnosticos-articulares',
       enunciado: '¿Qué hallazgo imagenológico pertenece a la osteoartritis de ATM?',
       opciones: [
         'Únicamente efusión sinovial',
@@ -170,6 +185,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b11',
+      tema: 'diagnosticos-articulares',
       enunciado: '¿Qué diferencia una desviación de una deflexión durante la apertura?',
       opciones: [
         'La desviación no vuelve a la línea media y la deflexión sí',
@@ -183,6 +199,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b12',
+      tema: 'diagnosticos-musculares',
       enunciado: '¿Cuál descripción corresponde al dolor miofascial?',
       opciones: [
         'Dolor exclusivamente articular con efusión en RM T2',
@@ -196,6 +213,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b13',
+      tema: 'cefaleas-neuralgias',
       enunciado: '¿Cuál rasgo es prototípico de la migraña sin aura?',
       opciones: [
         'Dolor bilateral opresivo que no empeora con actividad física',
@@ -209,6 +227,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b14',
+      tema: 'cefaleas-neuralgias',
       enunciado: '¿Cuál de las siguientes situaciones constituye una bandera roja de cefalea?',
       opciones: [
         'Dolor conocido reproducible al palpar el masetero',
@@ -222,6 +241,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b15',
+      tema: 'cefaleas-neuralgias',
       enunciado: '¿Cuál característica corresponde a la neuralgia trigeminal clásica?',
       opciones: [
         'Dolor continuo urente después de herpes',
@@ -235,6 +255,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b16',
+      tema: 'diagnosticos-articulares',
       enunciado: 'Caso clínico. Una paciente presenta dolor preauricular durante la función, dolor conocido a la palpación lateral de la ATM y sin ruido articular. ¿Qué hipótesis se relaciona más directamente con el origen del dolor?',
       opciones: ['Artralgia de ATM', 'Neuralgia glosofaríngea', 'Migraña retiniana', 'Trastorno por avance de fase'],
       indiceCorrecta: 0,
@@ -243,6 +264,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b17',
+      tema: 'diagnosticos-musculares',
       enunciado: 'Caso clínico. Un paciente presenta banda tensa en masetero. La palpación reproduce su dolor local y además lo proyecta hacia una zona distante. ¿Qué diagnóstico muscular es más compatible?',
       opciones: ['Co-contracción protectora', 'Dolor miofascial con dolor referido', 'Contractura mioestática indolora', 'Miositis infecciosa'],
       indiceCorrecta: 1,
@@ -251,6 +273,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b18',
+      tema: 'diagnosticos-articulares',
       enunciado: 'Caso clínico. Durante la apertura, la mandíbula sigue una trayectoria en C y no retorna a la línea media; no se detectan ruidos. ¿Qué alteración debe considerarse?',
       opciones: [
         'Desplazamiento discal sin reducción del lado hacia el cual deflecta',
@@ -264,6 +287,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b19',
+      tema: 'dolor-sensibilizacion',
       enunciado: 'Caso clínico. Una paciente presenta dolor espontáneo, alodinia y dolor extendido más allá del tejido inicialmente afectado. ¿Qué mecanismo explica mejor el cuadro?',
       opciones: ['Aumento del umbral central', 'Sensibilización central con expansión de campos receptivos', 'Estabilidad oclusal fina', 'Reflejo miotático fásico aislado'],
       indiceCorrecta: 1,
@@ -272,6 +296,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b20',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. Un hombre de 22 años se duerme habitualmente a las 03:00 y despierta a las 11:00 descansado cuando puede seguir su horario, pero no logra levantarse temprano para estudiar. ¿Cuál es el diagnóstico más probable?',
       opciones: ['Insomnio crónico de conciliación', 'Trastorno por retraso de fase del sueño y del despertar', 'Trastorno por avance de fase', 'Apnea obstructiva del sueño'],
       indiceCorrecta: 1,
@@ -280,6 +305,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b21',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. Una mujer tarda más de una hora en dormirse, cuatro noches por semana desde hace ocho meses, pese a mantener horarios regulares; presenta fatiga diurna. ¿Qué diagnóstico es más compatible?',
       opciones: ['Insomnio crónico de conciliación', 'Retraso de fase con sueño normal', 'Narcolepsia por déficit de orexinas', 'Apnea posicional confirmada'],
       indiceCorrecta: 0,
@@ -288,6 +314,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b22',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. Al acostarse, una paciente siente molestias desagradables en ambas piernas cuando permanece quieta y necesita caminar para aliviarlas. ¿Qué diagnóstico diferencial del insomnio de conciliación debe considerarse?',
       opciones: ['Síndrome de piernas inquietas', 'Migraña con aura', 'Hemicránea continua', 'Desplazamiento discal con reducción'],
       indiceCorrecta: 0,
@@ -296,6 +323,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b23',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. Un paciente presenta ronquidos, apneas presenciadas, somnolencia diurna, obesidad, cuello aumentado y retrognatia. ¿Cuál es la conducta diagnóstica correcta?',
       opciones: [
         'Confirmar AOS únicamente con STOP-Bang',
@@ -309,6 +337,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b24',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. En una polisomnografía se observan episodios de actividad masticatoria rítmica precedidos por activación autonómica, microdespertar y taquicardia. ¿Cómo debe interpretarse este hallazgo?',
       opciones: [
         'Como prueba de que la maloclusión causa bruxismo',
@@ -322,6 +351,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b25',
+      tema: 'sueno-bruxismo',
       enunciado: 'Caso clínico. Dos pacientes tienen el mismo desplazamiento discal con reducción. Uno presenta buen sueño y pocas comorbilidades; el otro tiene mal sueño, cefaleas y múltiples síntomas globales. Según OPPERA/ROPA, ¿quién tiene mayor riesgo?',
       opciones: [
         'El primero, porque la baja sensibilidad al dolor aumenta el riesgo',
@@ -335,6 +365,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b26',
+      tema: 'dolor-sensibilizacion',
       enunciado: 'Caso clínico. Una paciente con dolor persistente interpreta cualquier molestia como señal de daño grave, piensa continuamente en el dolor y siente que nada puede hacer. ¿Qué proceso está presente?',
       opciones: [
         'Catastrofización con magnificación, rumiación y desesperanza',
@@ -348,6 +379,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b27',
+      tema: 'cefaleas-neuralgias',
       enunciado: 'Caso clínico. Tras una exodoncia, una paciente mantiene por más de tres meses dolor continuo y quemante en territorio V3, con alodinia e hipoestesia. ¿Qué diagnóstico es más compatible?',
       opciones: ['Neuralgia trigeminal postraumática', 'Neuralgia trigeminal clásica', 'Cefalea tensional', 'Síndrome de boca urente sin antecedente traumático'],
       indiceCorrecta: 0,
@@ -356,6 +388,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b28',
+      tema: 'cefaleas-neuralgias',
       enunciado: 'Caso clínico. Un paciente tiene crisis unilaterales eléctricas de uno a dos minutos en V2, provocadas al rozar una zona gatillo y sin déficit neurológico objetivo. ¿Qué diagnóstico es más probable?',
       opciones: ['Neuralgia trigeminal', 'Neuralgia postherpética', 'Dolor miofascial referido', 'Migraña crónica'],
       indiceCorrecta: 0,
@@ -364,6 +397,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b29',
+      tema: 'cefaleas-neuralgias',
       enunciado: 'Caso clínico. Una cefalea unilateral orbitaria dura entre 15 y 180 minutos, es muy intensa, aparece por periodos y el paciente se muestra inquieto durante las crisis. ¿Cuál es el diagnóstico más compatible?',
       opciones: ['Cefalea en racimos', 'Hemicránea paroxística', 'SUNCT', 'Cefalea tensional'],
       indiceCorrecta: 0,
@@ -372,6 +406,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b30',
+      tema: 'cefaleas-neuralgias',
       enunciado: 'Caso clínico. Una paciente presenta ataques unilaterales de 10 segundos, decenas de veces al día, siempre con ojo rojo y lagrimeo. ¿Qué diagnóstico corresponde?',
       opciones: ['SUNA', 'SUNCT', 'Migraña sin aura', 'Hemicránea continua'],
       indiceCorrecta: 1,
@@ -380,6 +415,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b31',
+      tema: 'metodologia-oppera',
       enunciado: 'Caso clínico. Un estudio evalúa si una mala calidad de sueño precede y aumenta la probabilidad de desarrollar TTM en personas inicialmente sanas. ¿Qué diseño responde mejor a esa pregunta pronóstica?',
       opciones: ['Estudio transversal', 'Estudio de cohorte', 'Reporte de caso', 'Opinión de expertos'],
       indiceCorrecta: 1,
@@ -388,6 +424,7 @@ export const alternativasTTM: SesionAlternativas = {
     },
     {
       id: 'b32',
+      tema: 'metodologia-oppera',
       enunciado: 'Caso clínico. Un ensayo informa un RR cuyo intervalo de confianza del 95% cruza el valor 1. ¿Cómo se interpreta esto?',
       opciones: [
         'El resultado se considera estadísticamente significativo',
