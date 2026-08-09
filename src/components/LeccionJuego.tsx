@@ -256,3 +256,4 @@ export default function LeccionJuego({ leccion, onCompletar, onSalir }: LeccionJ
     </div>
   )
 }
+
