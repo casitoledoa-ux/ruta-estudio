@@ -4,6 +4,7 @@ import { MapaConceptualEjercicio } from '../types'
 interface MapaConceptualProps {
   ejercicio: MapaConceptualEjercicio
   onCompletar: (puntosGanados: number) => void
+  onSalir: () => void
 }
 
 const ANCHO_NODO = 74
@@ -32,7 +33,7 @@ function partirTexto(texto: string): string[] {
  * que corresponde. Si acierta, el término se "engancha" en el nodo. Si falla, el
  * nodo destella en rojo y el término vuelve al banco para reintentar.
  */
-export default function MapaConceptual({ ejercicio, onCompletar }: MapaConceptualProps) {
+export default function MapaConceptual({ ejercicio, onCompletar, onSalir }: MapaConceptualProps) {
   const nodosVacios = useMemo(() => ejercicio.nodos.filter((n) => n.texto === null), [ejercicio])
   const [rellenos, setRellenos] = useState<Record<string, string>>({})
   const [terminoSeleccionado, setTerminoSeleccionado] = useState<string | null>(null)
@@ -70,6 +71,9 @@ export default function MapaConceptual({ ejercicio, onCompletar }: MapaConceptua
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-bosque-panel rounded-2xl">
+      <button onClick={onSalir} className="font-cuerpo text-xs text-marfil/50 mb-3">
+        ← Salir
+      </button>
       <h2 className="font-display text-xl mb-1">{ejercicio.titulo}</h2>
       <p className="font-cuerpo text-xs text-marfil/50 mb-4">
         Toca un término de abajo y luego el espacio vacío donde crees que corresponde.
