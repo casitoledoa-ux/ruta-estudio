@@ -119,5 +119,3 @@ export interface Flashcard {
   termino: string
   definicion: string
 }
-
-}
