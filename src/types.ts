@@ -23,6 +23,7 @@ export interface ProgresoUsuario {
   puntosTotales: number
   nivel: number
   leccionActual?: number
+  leccionActualMateria?: number
   nombreJugador?: string | null
   avatarGenero?: string | null
   avatarColor?: string | null
@@ -40,6 +41,7 @@ export interface CriterioPauta {
 // el usuario responde en texto libre, y luego se autoevalúa contra la pauta.
 export interface PreguntaDesarrollo {
   id: string
+  tema?: string
   caso: string
   pregunta: string
   duracionSegundos: number
@@ -56,6 +58,7 @@ export interface SesionCasosClinicos {
 // Una pregunta de alternativas: enunciado + opciones, con feedback inmediato al elegir.
 export interface PreguntaAlternativa {
   id: string
+  tema?: string
   enunciado: string
   opciones: string[]
   indiceCorrecta: number
@@ -107,4 +110,14 @@ export interface MapaConceptualEjercicio {
   titulo: string
   nodos: NodoMapaConceptual[]
   terminosDistractores?: string[]
+}
+
+// Una tarjeta de estudio: término/concepto en el frente, definición al reverso.
+export interface Flashcard {
+  id: string
+  tema?: string
+  termino: string
+  definicion: string
+}
+
 }
